@@ -1,0 +1,125 @@
+\usepackage{tikz}
+
+\mode<presentation>
+
+\DeclareOptionBeamer{background}{\def\beamer@Saarland@background{#1}}
+\ExecuteOptionsBeamer{background=} % Default value is empty
+\DeclareOptionBeamer{logo}{\def\beamer@Saarland@logo{#1}}
+\DeclareOptionBeamer{logo2}{\def\beamer@Saarland@logoo{#1}}
+
+\ExecuteOptionsBeamer{logo=} % Default value is empty
+\ExecuteOptionsBeamer{logo2=} % Default value is empty
+
+\ProcessOptionsBeamer
+
+% footer has a uds logo and shows page number only
+\setbeamertemplate{footline}
+{%
+	\leavevmode%
+	\hbox{%
+		\hspace*{0.5ex}
+		\rlap{\includegraphics[height=0.2cm]{\beamer@Saarland@logoo}}
+
+		\begin{beamercolorbox}[wd=0.98\paperwidth,ht=2.25ex,dp=1ex,center]{pagenumber}%
+			\insertframenumber{}\hspace*{1ex}
+		\end{beamercolorbox}
+		\if \beamer@Saarland@logo\@empty
+		\else
+			\llap{\includegraphics[height=0.4cm]{\beamer@Saarland@logo}}
+
+		\fi
+	}%
+}
+
+% we insert the watermark background from the sidebar
+\setbeamertemplate{sidebar right}
+{
+	\if \beamer@Saarland@background\@empty
+	\else
+		\vskip.1\beamer@leftmargin%
+		\vfill%
+		\llap{\includegraphics[width=.5\paperwidth,height=.5\paperheight]{\beamer@Saarland@background}}
+	\fi
+}
+
+% customisation for the title page
+\setbeamertemplate{title page}
+{
+    \bigskip    
+    \bigskip    
+    \bigskip    
+    \bigskip    
+    \bigskip    
+    \bigskip    
+
+    \centering
+    \vskip-5pt\usebeamerfont{title}{\usebeamercolor[fg]{title}\inserttitle}\par
+    \usebeamercolor[fg]{subtitle}\vskip-20pt\par\noindent\rule{10cm}{0.1pt}\par
+	\usebeamerfont{subtitle}{\usebeamercolor[fg]{subtitle}\insertsubtitle}\par
+
+    \bigskip    
+    \bigskip    
+    \bigskip    
+    \bigskip    
+    \bigskip    
+    \bigskip   
+
+    \raggedleft
+	\usebeamerfont{author}{\usebeamercolor[fg]{title}\insertauthor}\par
+	\usebeamerfont{institute}{\usebeamercolor[fg]{title}\insertinstitute}\par
+	\usebeamerfont{date}{\usebeamercolor[fg]{title}\insertdate }
+
+    
+}
+\setbeamercolor{frametitle}{parent=subsection in head/foot}
+\setbeamercolor{frametitle right}{parent=section in head/foot}
+\makeatletter
+\pgfdeclarehorizontalshading[frametitle.bg,frametitle right.bg]{beamer@frametitleshade}{\paperheight}{%
+    color(0pt)=(hanyangblue);
+    color(50pt)=(hanyangblue_);
+    color(\paperwidth-50pt)=(hanyangwhiteblue_);
+    color(\paperwidth)=(hanyangwhiteblue)}
+
+\setbeamertemplate{frametitle}
+{%
+    \nointerlineskip%
+    \vskip-2pt%
+    \hbox{\leavevmode
+        \advance\beamer@leftmargin by -12bp%
+        \advance\beamer@rightmargin by -12bp%
+        \beamer@tempdim=\textwidth%
+        \advance\beamer@tempdim by \beamer@leftmargin%
+        \advance\beamer@tempdim by \beamer@rightmargin%
+        \hskip-\Gm@lmargin\hbox{%
+            \setbox\beamer@tempbox=\hbox{\begin{minipage}[b]{\paperwidth}%
+                    \vbox{}\vskip-.75ex%
+                    \leftskip0.3cm%
+                    \rightskip0.3cm plus1fil\leavevmode
+                    \insertframetitle%
+                    \ifx\insertframesubtitle\@empty%
+                    \strut\par%
+                    \else
+                    \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\strut\par}%
+                    \fi%
+                    \nointerlineskip
+                    \vbox{}%
+                \end{minipage}}%
+                \beamer@tempdim=\ht\beamer@tempbox%
+                \advance\beamer@tempdim by 2pt%
+                \begin{pgfpicture}{0pt}{0pt}{\paperwidth}{\beamer@tempdim}
+                    \usebeamercolor{frametitle right}
+                    \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\beamer@tempdim}}
+                    \pgfusepath{clip}
+                    \pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}
+                \end{pgfpicture}
+                \hskip-\paperwidth%
+                \box\beamer@tempbox%
+            }%
+            \hskip-\Gm@rmargin%
+        }%
+        \nointerlineskip
+
+    }
+\makeatother
+\mode<all>
+\endinput

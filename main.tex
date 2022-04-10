@@ -1,0 +1,98 @@
+% the sample slide is created with 16:9 aspect ratio
+\documentclass[aspectratio=169]{beamer}
+
+% remove the options if you do not want to have them
+\usetheme[
+	background=hanyang,
+	logo="logo.png",
+	logo2 = "logo2.png"
+]{hanyang}
+
+% the background and logo are in the images directory
+\graphicspath{{images/}}
+
+% information for the title page
+\author{성민창}
+\title{\textbf{LABMEETING}}
+\subtitle{An unofficial theme for Hanyang University}
+\institute{바이오로보틱스 연구실}
+\date{\today}
+
+\begin{document}
+	% use plain option to remove the page number from the title slide
+	\begin{frame}[plain]
+		\titlepage
+	\end{frame}
+
+	\begin{frame}{Introduction}
+	안녕하세요 저는 성민창입니다.
+		\begin{itemize}
+			\item \textbf{가나다라마바사}
+				\begin{itemize}
+					\item \textbf{가}: 1st January 1957
+					\item \textbf{나}: 2,569.69 $\text{km}^2$
+					\item \textbf{다}: 695m (Dolberg in Hunsrück)
+					\item \textbf{라}: 995,597 (31st December 2015)
+					\item \textbf{마}: 6.5\% (June 2017)
+				\end{itemize}
+			\item \textbf{가나다라마바사}
+				\begin{itemize}
+					\item \textbf{가}: 1st January 1957
+					\item \textbf{나}: 2,569.69 $\text{km}^2$
+					\item \textbf{다}: 695m (Dolberg in Hunsrück)
+					\item \textbf{라}: 995,597 (31st December 2015)
+					\item \textbf{마}: 6.5\% (June 2017)
+				\end{itemize}
+			\item Credits: \url{https://tjdalsckd.github.io/}
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}{Blocks}
+		%\framesubtitle{This is a subtitle}
+		\begin{block}{Standard Block}
+			This is a standard block.
+		\end{block}
+		
+		\begin{exampleblock}{Example Block}
+			This is an example block.
+		\end{exampleblock}
+		
+		\begin{alertblock}{Alert Block}
+			This is an alert block.
+		\end{alertblock}
+	\end{frame}
+	
+	\begin{frame}{Math}
+		Mathematics is the queen of sciences and arithmetic is the queen of mathematics.
+		\begin{align*}
+			\Pr(Y \geq 120) &= \Pr\left(Y-n\mu \geq 120-n\mu \right)\\
+			&= \Pr\left( \frac{Y-n\mu }{\sqrt{n}\sigma} \geq \frac{120-n\mu }{\sqrt{n}\sigma} \right)\\
+			&=\Pr\left( Z \geq \frac{120-n\mu }{\sqrt{n}\sigma} \right)\\
+			&=\Pr\left( Z \geq \frac{120-100 \cdot 1 }{10 \cdot 1} \right)\\
+			&=\Pr\left( Z \geq 2\right)
+		\end{align*}
+	\end{frame}
+
+	\begin{frame}{Two Columns}
+		We can also add two columns in the slides. `asdfasfd' and ``asdf''
+ 		\begin{columns}[t]
+			\begin{column}[T]{0.4\textwidth}
+				This is the first column. In this column, we can also add a block for instance.
+				\vspace{1em}
+				\begin{block}{Block}
+					I am a block in a column.
+				\end{block}
+			\end{column}
+			\begin{column}[T]{0.4\textwidth}
+				\begin{itemize}
+					\item In this column,
+					\item we just add the
+					\item bullet points.
+				\end{itemize}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	\begin{frame}{Acknowledgements}
+		This theme is inspired by saarland theme. The official beamer user guide was also very handy during the development.
+	\end{frame}
+\end{document}
